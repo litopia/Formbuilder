@@ -1,6 +1,6 @@
 .bform{
     padding: 15px;
-    
+
     ul, li{
         list-style: none;
         margin: 0;
@@ -9,5 +9,9 @@
 
     &-header{
 
+    }
+    &-field__label{
+        font-size: 14px;
+        font-weight: bold;
     }
 }
