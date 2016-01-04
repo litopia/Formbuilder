@@ -1,0 +1,23 @@
+{
+  "name": "formbuilder",
+  "version": "0.0.0",
+  "description": "This application takes in a json file and build a form on top of that",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lili",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.2.3",
+    "cssnext": "^1.8.4",
+    "gulp": "^3.9.0",
+    "gulp-postcss": "^6.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "precss": "^1.4.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1",
+    "webpack-stream": "^2.1.1"
+  }
+}
