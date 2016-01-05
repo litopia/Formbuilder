@@ -2,6 +2,7 @@ module.exports = {
     id: "testform",
     title: "Sign up for our paid opinion panel",
     description: "Become a member of our panel of people interested in getting paid for their opinions.",
+    action: '',
     sections: [{
         id: 1,
         title: null,
@@ -12,10 +13,12 @@ module.exports = {
             type: "label",
             subfields: [{
                 name: "First",
+                label: "First",
                 required: true,
                 type: "text"
             },{
                 name: "Last",
+                label: "Last",
                 required: true,
                 type: "text"
             }]   
@@ -123,6 +126,7 @@ module.exports = {
             type: 'label',
             subfields:[{
                 name: 'Street Address',
+                className: 'full-width',
                 required: true,
                 type: 'text'
             },{
@@ -131,10 +135,109 @@ module.exports = {
                 type: 'text'
             },{
                 name: 'State',
+                label: 'State', // states label to be used by select field
                 required: true,
                 type: 'select',
                 options: [{
-                    value: ''
+                    value: 'AL'
+                },{
+                    value: 'AK'
+                },{
+                    value: 'AZ'
+                },{
+                    value: 'AR'
+                },{
+                    value: 'CA'
+                },{
+                    value: 'CO'
+                },{
+                    value: 'CT'
+                },{
+                    value: 'DE'
+                },{
+                    value: 'FL'
+                },{
+                    value: 'GA'
+                },{
+                    value: 'HI'
+                },{
+                    value: 'ID'
+                },{
+                    value: 'IL'
+                },{
+                    value: 'IN'
+                },{
+                    value: 'IA'
+                },{
+                    value: 'KS'
+                },{
+                    value: 'KY'
+                },{
+                    value: 'LA'
+                },{
+                    value: 'ME'
+                },{
+                    value: 'MD'
+                },{
+                    value: 'MA'
+                },{
+                    value: 'MI'
+                },{
+                    value: 'MN'
+                },{
+                    value: 'MS'
+                },{
+                    value: 'MO'
+                },{
+                    value: 'MT'
+                },{
+                    value: 'NE'
+                },{
+                    value: 'NV'
+                },{
+                    value: 'NH'
+                },{
+                    value: 'NJ'
+                },{
+                    value: 'NM'
+                },{
+                    value: 'NY'
+                },{
+                    value: 'NC'
+                },{
+                    value: 'ND'
+                },{
+                    value: 'OH'
+                },{
+                    value: 'OK'
+                },{
+                    value: 'OR'
+                },{
+                    value: 'PA'
+                },{
+                    value: 'RI'
+                },{
+                    value: 'SC'
+                },{
+                    value: 'SD'
+                },{
+                    value: 'TN'
+                },{
+                    value: 'TX'
+                },{
+                    value: 'UT'
+                },{
+                    value: 'VT'
+                },{
+                    value: 'VA'
+                },{
+                    value: 'WA'
+                },{
+                    value: 'WV'
+                },{
+                    value: 'WI'
+                },{
+                    value: 'WY'
                 }]
             },{
                 name: 'Zip Code',

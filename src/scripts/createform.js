@@ -80,6 +80,16 @@ module.exports = {
             f.appendChild(sectionHTML);
         })
 
+        var submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.className = 'btn';
+        submitButton.innerHTML = 'Submit';
+
+        f.appendChild(submitButton);
+
+        f.method = 'POST';
+        f.action = formdata.action;
+        
         return f;
     }
 }
