@@ -1,19 +1,22 @@
+var validateForm = require('./validateForm.js');
+
 module.exports={
     create: function (fieldata) {
         // init & field create function text fields
         var field = this.createWrapper(fieldata);
         var that = this;
+        
+        field.appendChild(that.createLabel(fieldata));
 
-        if (fieldata.type === 'label') {
-            field.appendChild(that.createLabel(fieldata));
-        }else if(fieldata.type === 'text'){
-            field.appendChild(that.createLabel(fieldata));
+        if(fieldata.description){
+            field.appendChild(that.createDescription(fieldata));
+        }
+        
+        if(fieldata.type === 'text'){
             field.appendChild(that.createInputField(fieldata));
         }else if(fieldata.type === 'select'){
-            field.appendChild(that.createLabel(fieldata));
             field.appendChild(that.createSelectField(fieldata));
         }else if(fieldata.type === 'radio' || fieldata.type === 'checkbox'){
-            field.appendChild(that.createLabel(fieldata));
             field.appendChild(that.createCheckboxSection(fieldata));
         };
         
@@ -34,7 +37,7 @@ module.exports={
             subfields.forEach(function(subfield, index){
                 var subfieldHTML;
 
-                if(subfield.type === "text"){
+                if(subfield.type === 'text' || subfield.type === 'email'){
                     subfieldHTML = that.createSubTextField(subfield);
                 }else if(subfield.type === "select"){
                     subfieldHTML = that.createSubSelectField(subfield);
@@ -52,6 +55,13 @@ module.exports={
         wrapper.className = "bform-field__wrapper";
 
         return wrapper;
+    },
+    createDescription: function(fieldata){
+        var description = document.createElement('p');
+        description.className = 'bform-field__dek';
+        description.textContent = fieldata.description;
+
+        return description;
     },
     createLabel: function (fieldata) {
         // create field label
@@ -76,7 +86,14 @@ module.exports={
         if(fieldata.placeholder){
             input.placeholder = fieldata.placeholder;
         }
+        if(fieldata.uid){
+            input.id = fieldata.uid;
+        }
         input.className = 'bform-field__input';
+
+        if(fieldata.relation && fieldata.relation.type === 'confirm'){
+            validateForm.initConfirm(input, fieldata.relation.target);
+        }
         
         return input;
     },
@@ -132,6 +149,10 @@ module.exports={
                 selectHTML.appendChild(optionHTML);
             })
             selectWrapper.appendChild(selectHTML);
+        }
+
+        if(fieldata.relation && fieldata.relation.type === 'update'){
+            validateForm.initUpdateRelation(selectHTML, fieldata.relation.target);
         }
         return selectWrapper;
     },

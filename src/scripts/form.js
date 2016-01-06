@@ -255,13 +255,17 @@ module.exports = {
                 value: 'Work Phone'
             },{
                 value: 'Mobile Phone'
-            }]
+            }],
+            relation: {
+                type: 'update',
+                target: 'phone-input'
+            }
         },{
             id: 3,
             name: 'Home Phone',
             required: true,
             type: 'text',
-            relationto: '2'
+            uid: 'phone-input'
         },{
             id: 4,
             name: 'Email',
@@ -269,12 +273,17 @@ module.exports = {
             type: 'label',
             subfields: [{
                 name: 'Enter Email',
-                type: 'text',
+                type: 'email',
                 required: true,
+                uid: 'email-input'
             }, {
                 name: 'Confirm Email',
-                type: 'text',
-                required: true
+                type: 'email',
+                required: true,
+                relation: {
+                    type: 'confirm',
+                    target: 'email-input'
+                }
             }]
         }]
     },{
@@ -443,6 +452,35 @@ module.exports = {
             },{
                 value: '4+'
             }]
+        },{
+            name: "Children's Information",
+            type: 'label',
+            subfields: [{
+                name: 'Name',
+                type: 'text',
+            },{
+                name: 'month',
+                label: 'Date of Birth',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Month'
+                }]
+            },{
+                name: 'day',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Day'
+                }]
+            },{
+                name: 'year',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Year'
+                }]
+            }]
         }]
     },{
         id: 5,
@@ -522,6 +560,7 @@ module.exports = {
         fields: [{
             name: 'Panel Profile',
             type: 'radio',
+            required: true,
             options: [{
                 value: 'General/Consumer'
             },{
@@ -536,7 +575,8 @@ module.exports = {
         fields: [{
             name: 'Permission to Contact',
             description: 'I hereby grant you permission to contact me to verify my information or about match me to paid opportunities to give my opinion.',
-            type: 'radio',
+            type: 'checkbox',
+            required: true,
             options: [{
                 value: 'I agree'
             }]

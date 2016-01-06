@@ -64,6 +64,16 @@ ul, li{
         border: $border;
         height: 34px;
         min-width: 250px;
+        font-size: 14px;
+
+        &.invalid{
+            border-color: red;
+            color: red;
+        }
+    }
+    &__dek{
+        font-size: 14px;
+        margin-top: 0;
     }
 }
 .bform-select{
@@ -126,5 +136,9 @@ ul, li{
         
     }
 }
-
+.bform-errorMsg{
+    color: red;
+    font-size: 14px;
+    margin: 5px 0;
+}
 
