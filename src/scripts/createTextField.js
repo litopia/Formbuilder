@@ -6,13 +6,15 @@ module.exports={
         var field = this.createWrapper(fieldata);
         var that = this;
         
-        field.appendChild(that.createLabel(fieldata));
+        if(fieldata.name){
+            field.appendChild(that.createLabel(fieldata));
+        }
 
         if(fieldata.description){
             field.appendChild(that.createDescription(fieldata));
         }
         
-        if(fieldata.type === 'text'){
+        if(fieldata.type === 'text' || fieldata.type === 'email' || fieldata.type == 'tel'){
             field.appendChild(that.createInputField(fieldata));
         }else if(fieldata.type === 'select'){
             field.appendChild(that.createSelectField(fieldata));
@@ -37,7 +39,7 @@ module.exports={
             subfields.forEach(function(subfield, index){
                 var subfieldHTML;
 
-                if(subfield.type === 'text' || subfield.type === 'email'){
+                if(subfield.type === 'text' || subfield.type === 'email' || subfield.type === 'tel'){
                     subfieldHTML = that.createSubTextField(subfield);
                 }else if(subfield.type === "select"){
                     subfieldHTML = that.createSubSelectField(subfield);
@@ -53,6 +55,10 @@ module.exports={
         // create the wrapper for text field
         var wrapper = document.createElement('li');
         wrapper.className = "bform-field__wrapper";
+
+        if(fieldata.classNames){
+            wrapper.className = wrapper.className + ' ' + fieldata.classNames;
+        }
 
         return wrapper;
     },
@@ -93,6 +99,12 @@ module.exports={
 
         if(fieldata.relation && fieldata.relation.type === 'confirm'){
             validateForm.initConfirm(input, fieldata.relation.target);
+        }
+
+        if(fieldata.type === 'email'){
+            validateForm.validateEmail(input);
+        }else if(fieldata.type === 'tel'){
+            validateForm.validatePhoneNumber(input);
         }
         
         return input;
@@ -153,6 +165,8 @@ module.exports={
 
         if(fieldata.relation && fieldata.relation.type === 'update'){
             validateForm.initUpdateRelation(selectHTML, fieldata.relation.target);
+        }else if(fieldata.relation && fieldata.relation.type === 'insert'){
+            validateForm.initInsertRelation(selectHTML, fieldata.relation.target);
         }
         return selectWrapper;
     },

@@ -17,6 +17,9 @@ ul, li{
     *{
         box-sizing: border-box;
     }
+    .hide{
+        display: none;
+    }
     .btn{
         height: 34px;
         padding: 5px 15px;
@@ -26,6 +29,10 @@ ul, li{
         font-size: 16px;
         background-color: $theme-main;
         color: white;
+
+        &[disabled="true"]{
+            opacity: 0.5;
+        }
     }
     &-header{
         margin-bottom: 25px;

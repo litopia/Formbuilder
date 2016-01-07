@@ -264,8 +264,9 @@ module.exports = {
             id: 3,
             name: 'Home Phone',
             required: true,
-            type: 'text',
-            uid: 'phone-input'
+            type: 'tel',
+            uid: 'phone-input',
+            placeholder: 'xxx-xxx-xxxx'
         },{
             id: 4,
             name: 'Email',
@@ -278,7 +279,7 @@ module.exports = {
                 uid: 'email-input'
             }, {
                 name: 'Confirm Email',
-                type: 'email',
+                type: 'text',
                 required: true,
                 relation: {
                     type: 'confirm',
@@ -439,8 +440,8 @@ module.exports = {
         id: 4,
         title: "Children",
         fields: [{
-            name: 'Number of Children living in the home under the age of 21',
-            type: 'select', // TODO: create text field based on selected value
+            name: 'Number of Children Living in the Home Under the Age of 21',
+            type: 'select',
             options: [{
                 value: 0,
             },{
@@ -450,16 +451,23 @@ module.exports = {
             },{
                 value: 3
             },{
-                value: '4+'
-            }]
+                value: 4,
+                label: '4+'
+            }],
+            relation: {
+                type: 'insert',
+                target: '.child-info'
+            }
         },{
             name: "Children's Information",
             type: 'label',
+            classNames: 'child-info hide',
             subfields: [{
-                name: 'Name',
+                name: 'Child 1\'s Name',
+                label: 'Name',
                 type: 'text',
             },{
-                name: 'month',
+                name: 'child 1 - dob - month',
                 label: 'Date of Birth',
                 type: 'select',
                 options: [{
@@ -467,14 +475,107 @@ module.exports = {
                     label: 'Month'
                 }]
             },{
-                name: 'day',
+                name: 'child 1 - dob - day',
                 type: 'select',
                 options: [{
                     value: '',
                     label: 'Day'
                 }]
             },{
-                name: 'year',
+                name: 'child 1 - dob - year',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Year'
+                }]
+            }]
+        },{
+            name: '',
+            type: 'label',
+            classNames: 'child-info hide',
+            subfields: [{
+                name: 'Child 2\'s Name',
+                label: 'Name',
+                type: 'text',
+            },{
+                name: 'child 2 - dob - month',
+                label: 'Date of Birth',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Month'
+                }]
+            },{
+                name: 'child 2 - dob - day',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Day'
+                }]
+            },{
+                name: 'child 2 - dob - year',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Year'
+                }]
+            }]
+        },{
+            name: '',
+            type: 'label',
+            classNames: 'child-info hide',
+            subfields: [{
+                name: 'Child 3\'s Name',
+                type: 'text',
+                label: 'Name'
+            },{
+                name: 'child 3 - dob - month',
+                label: 'Date of Birth',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Month'
+                }]
+            },{
+                name: 'child 3 - dob - day',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Day'
+                }]
+            },{
+                name: 'child 3 - dob - year',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Year'
+                }]
+            }]
+        },{
+            name: '',
+            type: 'label',
+            classNames: 'child-info hide',
+            subfields: [{
+                name: 'Child 4\'s Name',
+                type: 'text',
+                label: 'Name',
+            },{
+                name: 'child 4 - dob - month',
+                label: 'Date of Birth',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Month'
+                }]
+            },{
+                name: 'child 4 - dob - day',
+                type: 'select',
+                options: [{
+                    value: '',
+                    label: 'Day'
+                }]
+            },{
+                name: 'child 4 - dob - year',
                 type: 'select',
                 options: [{
                     value: '',

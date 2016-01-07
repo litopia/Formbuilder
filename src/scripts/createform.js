@@ -84,6 +84,7 @@ module.exports = {
         submitButton.type = 'submit';
         submitButton.className = 'btn';
         submitButton.innerHTML = 'Submit';
+        submitButton.id = 'submit';
 
         f.appendChild(submitButton);
 

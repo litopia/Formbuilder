@@ -13,6 +13,9 @@ ul, li{
 .bform *{
     box-sizing: border-box;
 }
+.bform .hide{
+    display: none;
+}
 .bform .btn{
     height: 34px;
     padding: 5px 15px;
@@ -24,6 +27,9 @@ ul, li{
     font-size: 16px;
     background-color: #0083BB;
     color: white;
+}
+.bform .btn[disabled="true"]{
+    opacity: 0.5;
 }
 .bform-header{
     margin-bottom: 25px;
