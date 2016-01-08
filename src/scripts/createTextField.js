@@ -15,9 +15,14 @@ module.exports={
         }
         
         if(fieldata.type === 'text' || fieldata.type === 'email' || fieldata.type == 'tel'){
-            field.appendChild(that.createInputField(fieldata));
+            var inputField = that.createInputField(fieldata);
+            field.appendChild(inputField);
+            
         }else if(fieldata.type === 'select'){
-            field.appendChild(that.createSelectField(fieldata));
+            var selectField = that.createSelectField(fieldata);
+
+            field.appendChild(selectField);
+            
         }else if(fieldata.type === 'radio' || fieldata.type === 'checkbox'){
             field.appendChild(that.createCheckboxSection(fieldata));
         };
@@ -97,11 +102,15 @@ module.exports={
         }
         input.className = 'bform-field__input';
 
+        if(fieldata.required){
+            validateForm.validateRequired(input);
+        }
         if(fieldata.type === 'email'){
             validateForm.validateEmail(input);
         }else if(fieldata.type === 'tel'){
             validateForm.validatePhoneNumber(input);
         }
+
         if(fieldata.relation && fieldata.relation.type === 'confirm'){
             validateForm.initConfirm(input, fieldata.relation.target);
         }
@@ -167,6 +176,7 @@ module.exports={
         }else if(fieldata.relation && fieldata.relation.type === 'insert'){
             validateForm.initInsertRelation(selectHTML, fieldata.relation.target);
         }
+
         return selectWrapper;
     },
     createSubTextField: function (subfieldata) {
@@ -175,11 +185,12 @@ module.exports={
         // TODO: need to consider responsive issue
         var that = this;
         var wrapper = document.createElement('span');
+        var inputField = that.createInputField(subfieldata);
         wrapper.className = 'bform-subfield__item';
         if(subfieldata.className){
             wrapper.className = wrapper.className + ' ' + subfieldata.className;
         }
-        wrapper.appendChild(that.createInputField(subfieldata));
+        wrapper.appendChild(inputField);
         wrapper.appendChild(that.createLabel(subfieldata));
 
         return wrapper;
@@ -187,8 +198,9 @@ module.exports={
     createSubSelectField: function(subfieldata){
         var that = this;
         var wrapper = document.createElement('span');
+        var selectField = that.createSelectField(subfieldata);
         wrapper.className = 'bform-subfield__item';
-        wrapper.appendChild(that.createSelectField(subfieldata));
+        wrapper.appendChild(selectField);
         if(subfieldata.label){
             wrapper.appendChild(that.createLabel(subfieldata));
         }

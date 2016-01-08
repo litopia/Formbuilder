@@ -1,8 +1,20 @@
 module.exports = {
     validateRequired: function(elem){
-        elem.addEventListener('blur', function(e){
-            if (elem.value) {
+        var that = this;
+        var errorMsg = that.fieldErrorMsg('This field is required.');
+        var validated = false;
 
+        elem.addEventListener('blur', function(e){
+            var isValid = Boolean(elem.value);
+
+            if (isValid && validated) {
+                validated = false;
+                that.changeInvalidState(isValid, elem);
+                elem.parentNode.removeChild(errorMsg);
+            }else if(!isValid && !validated){
+                validated = true;
+                that.changeInvalidState(isValid, elem);
+                elem.parentNode.appendChild(errorMsg);
             };
         })
     },
