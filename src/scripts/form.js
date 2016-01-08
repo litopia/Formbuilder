@@ -5,6 +5,7 @@ module.exports = {
     title: "Sign up for our paid opinion panel",
     description: "Become a member of our panel of people interested in getting paid for their opinions.",
     action: '',
+    containerId: 'custom-form',
     sections: [{
         id: 1,
         title: null,

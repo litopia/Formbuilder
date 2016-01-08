@@ -7,8 +7,7 @@ module.exports = {
 
         formHtml.appendChild(this.createForm(formdata));
 
-        // TODO: REFACTOR THIS to append wrapper to user's need
-        document.getElementsByTagName('body')[0].appendChild(formHtml);
+        document.getElementById(formdata.containerId).appendChild(formHtml);
     },
     createWrapper: function (formdata) {
         // create the wrapper for the form 
