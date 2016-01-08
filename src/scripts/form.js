@@ -276,11 +276,16 @@ module.exports = {
                 name: 'Enter Email',
                 type: 'email',
                 required: true,
-                uid: 'email-input'
+                uid: 'email-input',
+                relation: {
+                    type: 'confirm',
+                    target: 'email-confirm'
+                }
             }, {
                 name: 'Confirm Email',
                 type: 'text',
                 required: true,
+                uid: 'email-confirm',
                 relation: {
                     type: 'confirm',
                     target: 'email-input'

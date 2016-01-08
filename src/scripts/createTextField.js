@@ -97,14 +97,13 @@ module.exports={
         }
         input.className = 'bform-field__input';
 
-        if(fieldata.relation && fieldata.relation.type === 'confirm'){
-            validateForm.initConfirm(input, fieldata.relation.target);
-        }
-
         if(fieldata.type === 'email'){
             validateForm.validateEmail(input);
         }else if(fieldata.type === 'tel'){
             validateForm.validatePhoneNumber(input);
+        }
+        if(fieldata.relation && fieldata.relation.type === 'confirm'){
+            validateForm.initConfirm(input, fieldata.relation.target);
         }
         
         return input;

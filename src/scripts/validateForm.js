@@ -1,6 +1,14 @@
 module.exports = {
+    validateRequired: function(elem){
+        elem.addEventListener('blur', function(e){
+            if (elem.value) {
+
+            };
+        })
+    },
     validatePhoneNumber: function(elem){
         var errorMsg = this.fieldErrorMsg('Please enter a valid phone number. It should contains 10 digits and starts with your area code only.');
+        var validated = false;
 
         elem.addEventListener('blur', function(){
             var phoneRegex = new RegExp('(\\d{3})(\\d{3})(\\d{4})');
@@ -10,7 +18,8 @@ module.exports = {
             
             if(phoneRegex.test(number)){
                 this.value = number.replace(phoneRegex, "$1-$2-$3");
-                if(elem.classList.contains('invalid')){
+                if(validated){
+                    validated = false;
                     elem.classList.remove('invalid');
                     elem.parentNode.removeChild(errorMsg);
                     if(document.getElementsByClassName('invalid').length < 1){
@@ -18,7 +27,8 @@ module.exports = {
                     }
                 }
             }else{
-                if (!elem.classList.contains('invalid')) {
+                if (!validated) {
+                    validated = true;
                     elem.classList.add('invalid');
                     elem.parentNode.appendChild(errorMsg);
                     document.getElementById('submit').setAttribute('disabled', true);
@@ -32,18 +42,22 @@ module.exports = {
         var emailRegex = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
         var that = this;
         var errorMsg = that.fieldErrorMsg('This is not a valid email address.');
+        var validated = false;
 
         elem.addEventListener('blur', function(e){
             var parent = elem.parentNode;
 
+            // If email input doesn't match regex format
             if(!emailRegex.test(this.value)){
-                if (!this.classList.contains('invalid')){
+                if (!validated){
+                    validated = true;
                     this.classList.add('invalid');
                     parent.appendChild(errorMsg);
                     document.getElementById('submit').setAttribute('disabled', true);
                 };
             }else{
-                if (this.classList.contains('invalid')) {
+                if (validated) {
+                    validated = false;
                     this.classList.remove('invalid');
                     parent.removeChild(errorMsg);
                     if(document.getElementsByClassName('invalid').length < 1){
@@ -89,7 +103,8 @@ module.exports = {
     },
     initConfirm: function(elem, targetID){
         var that = this;
-        var errorMsg = that.fieldErrorMsg('These two fields don\'t match.');
+        var errorMsg = that.fieldErrorMsg('These two fields don\'t match.', 'repeat-error');
+        var validated = false;
 
         elem.addEventListener('blur', function(e){
 
@@ -98,30 +113,49 @@ module.exports = {
             var targetValue = targetElem.value;
             var parentElem = that.getClosest(elem, '.bform-subfield__holder');
 
-            if(inputValue.toLowerCase() === targetValue.toLowerCase()){
-                // If input matches target input, remove all invalid states
-                if(this.classList.contains('invalid')){
-                    this.classList.remove('invalid');
+            if (targetValue) {
+                if(inputValue.toLowerCase() === targetValue.toLowerCase()){
+                    // If input matches target input, remove all invalid states
+                    that.changeInvalidState(true, elem);
+
                     targetElem.classList.remove('invalid');
 
-                    parentElem.removeChild(errorMsg);
-                }
-            }else{
-                if(!this.classList.contains('invalid')){
-                    this.classList.add('invalid');
-                    targetElem.classList.add('invalid');
-                }
+                    if (parentElem.getElementsByClassName('repeat-error').length > 0) {
+                        parentElem.getElementsByClassName('repeat-error')[0].remove();
+                    };
                 
-                parentElem.appendChild(errorMsg);
-            }
+                }else{
+                    that.changeInvalidState(false, elem);
+
+                    targetElem.classList.add('invalid');
+                    if (parentElem.getElementsByClassName('repeat-error').length < 1) {
+                        parentElem.appendChild(errorMsg);
+                    };
+                }
+            };
         })
     },
-    fieldErrorMsg: function (message) {
+    changeInvalidState: function (valid, elem) {
+        // This function updates the ui state of the target element
+        if(valid){
+            elem.classList.remove('invalid');
+
+            // enable submit button, if there is no invalid inputs
+            if(document.getElementsByClassName('invalid').length < 1){
+                document.getElementById('submit').setAttribute('disabled', false);
+            }
+        }else{
+            elem.classList.add('invalid');
+            document.getElementById('submit').setAttribute('disabled', true);
+        }
+    },
+    fieldErrorMsg: function (message, className) {
         // construct field error message
         var msg = document.createElement('p');
         msg.textContent = message;
         msg.className = 'bform-errorMsg';
 
+        if(className){msg.classList.add(className)}
         return msg;
     },
     getTargets: function (selector) {
