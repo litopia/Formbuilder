@@ -168,6 +168,7 @@ module.exports = {
         msg.className = 'bform-errorMsg';
 
         if(className){msg.classList.add(className)}
+
         return msg;
     },
     getTargets: function (selector) {

@@ -1,0 +1,139 @@
+/* Variables */
+
+/* Reset */
+ul, li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.bform{
+    padding: 15px;
+    font-family: sans-serif;
+}
+.bform *{
+    box-sizing: border-box;
+}
+.bform .hide{
+    display: none;
+}
+.bform .btn{
+    height: 34px;
+    padding: 5px 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    background-color: #0083BB;
+    color: white;
+}
+.bform .btn[disabled="true"]{
+    opacity: 0.5;
+}
+.bform-header{
+    margin-bottom: 25px;
+}
+.bform-header__title{
+    color: #0083BB;
+    font-size: 2.618em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+.bform-section__header{
+    color: rgba(0, 131, 187, 0.9);
+    font-size: 1.618em;
+    margin-top: 1em;
+    margin-bottom: 0.382em;
+    text-transform: capitalize;
+}
+.bform-field__wrapper{
+    margin-bottom: 1em;
+}
+.bform-field__label{
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    padding: 5px 0;
+}
+.bform-field__input{
+    border-radius: 3px;
+    padding: 5px;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #f5f5f5;
+    height: 34px;
+    min-width: 250px;
+    font-size: 14px;
+}
+.bform-field__input.invalid{
+    border-color: red;
+    color: red;
+}
+.bform-field__dek{
+    font-size: 14px;
+    margin-top: 0;
+}
+.bform-select{
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    border: 1px solid #f5f5f5;
+    border-radius: border-radius;
+    padding: 5px 33px 5px 5px;
+    height: 34px;
+    background: #f5f5f5;
+    font-size: 14px;
+}
+.bform-select__wrapper{
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+}
+.bform-select__wrapper:after{
+    content:' ';
+    width: 0;
+    height: 0;
+    border-top: 5px solid rgba(0,0,0,0.3);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.bform-checkbox{
+    margin-right: 5px;
+}
+.bform-checkbox__label{
+    margin-right: 15px;
+    font-size: 14px;
+}
+.bform-subfield__item{
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5px;
+}
+.bform-subfield__item.full-width{
+    display: block;
+    margin-bottom: 10px;
+    max-width: 750px;
+}
+.bform-subfield__item.full-width .bform-field__input{
+    width: 100%;
+}
+.bform-subfield__item .bform-field__label{
+    font-weight: normal;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.bform-errorMsg{
+    color: red;
+    font-size: 14px;
+    margin: 5px 0;
+}
+

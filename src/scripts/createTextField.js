@@ -15,14 +15,10 @@ module.exports={
         }
         
         if(fieldata.type === 'text' || fieldata.type === 'email' || fieldata.type == 'tel'){
-            var inputField = that.createInputField(fieldata);
-            field.appendChild(inputField);
-            
+            field.appendChild(that.createInputField(fieldata));
         }else if(fieldata.type === 'select'){
-            var selectField = that.createSelectField(fieldata);
+            field.appendChild(that.createSelectField(fieldata));
 
-            field.appendChild(selectField);
-            
         }else if(fieldata.type === 'radio' || fieldata.type === 'checkbox'){
             field.appendChild(that.createCheckboxSection(fieldata));
         };
@@ -105,14 +101,11 @@ module.exports={
         if(fieldata.required){
             validateForm.validateRequired(input);
         }
+
         if(fieldata.type === 'email'){
             validateForm.validateEmail(input);
         }else if(fieldata.type === 'tel'){
             validateForm.validatePhoneNumber(input);
-        }
-
-        if(fieldata.relation && fieldata.relation.type === 'confirm'){
-            validateForm.initConfirm(input, fieldata.relation.target);
         }
         
         return input;
@@ -185,12 +178,16 @@ module.exports={
         // TODO: need to consider responsive issue
         var that = this;
         var wrapper = document.createElement('span');
+
         var inputField = that.createInputField(subfieldata);
+
         wrapper.className = 'bform-subfield__item';
         if(subfieldata.className){
             wrapper.className = wrapper.className + ' ' + subfieldata.className;
         }
+
         wrapper.appendChild(inputField);
+
         wrapper.appendChild(that.createLabel(subfieldata));
 
         return wrapper;
@@ -198,9 +195,11 @@ module.exports={
     createSubSelectField: function(subfieldata){
         var that = this;
         var wrapper = document.createElement('span');
+
         var selectField = that.createSelectField(subfieldata);
         wrapper.className = 'bform-subfield__item';
         wrapper.appendChild(selectField);
+
         if(subfieldata.label){
             wrapper.appendChild(that.createLabel(subfieldata));
         }

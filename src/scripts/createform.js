@@ -7,9 +7,11 @@ module.exports = {
 
         formHtml.appendChild(this.createForm(formdata));
 
+
         var container = formdata.containerId ? document.getElementById(formdata.containerId) : document.getElementsByTagName('body')[0];
 
         container.appendChild(formHtml);
+
     },
     createWrapper: function (formdata) {
         // create the wrapper for the form 
