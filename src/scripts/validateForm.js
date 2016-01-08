@@ -56,7 +56,7 @@ module.exports = {
 
         elem.addEventListener('blur', function(e){
             var parent = elem.parentNode;
-            var isValid = emailRegex.test(this.value);
+            var isValid = this.value ? emailRegex.test(this.value) : true;
 
             // If email input doesn't match regex format
             if(!isValid){
@@ -154,7 +154,7 @@ module.exports = {
 
             // enable submit button, if there is no invalid inputs
             if(document.getElementsByClassName('invalid').length < 1){
-                document.getElementById('submit').setAttribute('disabled', false);
+                document.getElementById('submit').removeAttribute('disabled');
             }
         }else{
             elem.classList.add('invalid');

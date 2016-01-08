@@ -1,3 +1,5 @@
+var birthdayOptions = require('./birthdays.js');
+
 module.exports = {
     id: "testform",
     title: "Sign up for our paid opinion panel",
@@ -31,26 +33,17 @@ module.exports = {
                 name: "Month",
                 required: true,
                 type: 'select',
-                options:[{
-                    value: '',
-                    label: 'Month'
-                }]
+                options: birthdayOptions.month()
             },{
                 name: "Day",
                 required: true,
                 type: 'select',
-                options:[{
-                    value: '',
-                    label: 'Day'
-                }]
+                options: birthdayOptions.day()
             },{
                 name: "Year",
                 required: true,
                 type: 'select',
-                options:[{
-                    value: '',
-                    label: 'Year'
-                }]
+                options: birthdayOptions.year()
             }]
         },{
             id: 3, 
@@ -475,24 +468,15 @@ module.exports = {
                 name: 'child 1 - dob - month',
                 label: 'Date of Birth',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Month'
-                }]
+                options: birthdayOptions.month()
             },{
                 name: 'child 1 - dob - day',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Day'
-                }]
+                options: birthdayOptions.day()
             },{
                 name: 'child 1 - dob - year',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Year'
-                }]
+                options: birthdayOptions.year()
             }]
         },{
             name: '',
@@ -506,24 +490,15 @@ module.exports = {
                 name: 'child 2 - dob - month',
                 label: 'Date of Birth',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Month'
-                }]
+                options: birthdayOptions.month()
             },{
                 name: 'child 2 - dob - day',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Day'
-                }]
+                options: birthdayOptions.day()
             },{
                 name: 'child 2 - dob - year',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Year'
-                }]
+                options: birthdayOptions.year()
             }]
         },{
             name: '',
@@ -537,24 +512,15 @@ module.exports = {
                 name: 'child 3 - dob - month',
                 label: 'Date of Birth',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Month'
-                }]
+                options: birthdayOptions.month()
             },{
                 name: 'child 3 - dob - day',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Day'
-                }]
+                options:  birthdayOptions.day()
             },{
                 name: 'child 3 - dob - year',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Year'
-                }]
+                options:  birthdayOptions.year()
             }]
         },{
             name: '',
@@ -568,24 +534,15 @@ module.exports = {
                 name: 'child 4 - dob - month',
                 label: 'Date of Birth',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Month'
-                }]
+                options: birthdayOptions.month()
             },{
                 name: 'child 4 - dob - day',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Day'
-                }]
+                options:  birthdayOptions.day()
             },{
                 name: 'child 4 - dob - year',
                 type: 'select',
-                options: [{
-                    value: '',
-                    label: 'Year'
-                }]
+                options:  birthdayOptions.year()
             }]
         }]
     },{
