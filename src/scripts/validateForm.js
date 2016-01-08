@@ -9,30 +9,28 @@ module.exports = {
     validatePhoneNumber: function(elem){
         var errorMsg = this.fieldErrorMsg('Please enter a valid phone number. It should contains 10 digits and starts with your area code only.');
         var validated = false;
+        var that = this;
 
         elem.addEventListener('blur', function(){
             var phoneRegex = new RegExp('(\\d{3})(\\d{3})(\\d{4})');
             var number = this.value;
             number = number.replace(/[_\W]+/g, '');
             var length = number.length;
+            var isValid = phoneRegex.test(number);
             
-            if(phoneRegex.test(number)){
+            if(isValid){
                 this.value = number.replace(phoneRegex, "$1-$2-$3");
                 if(validated){
                     validated = false;
-                    elem.classList.remove('invalid');
+                    that.changeInvalidState(isValid, elem);
                     elem.parentNode.removeChild(errorMsg);
-                    if(document.getElementsByClassName('invalid').length < 1){
-                        document.getElementById('submit').setAttribute('disabled', false);
-                    }
                 }
             }else{
                 if (!validated) {
                     validated = true;
-                    elem.classList.add('invalid');
+                    that.changeInvalidState(isValid, elem);
                     elem.parentNode.appendChild(errorMsg);
-                    document.getElementById('submit').setAttribute('disabled', true);
-                };
+                }
             }
             
         })
@@ -46,23 +44,24 @@ module.exports = {
 
         elem.addEventListener('blur', function(e){
             var parent = elem.parentNode;
+            var isValid = emailRegex.test(this.value);
 
             // If email input doesn't match regex format
-            if(!emailRegex.test(this.value)){
+            if(!isValid){
                 if (!validated){
                     validated = true;
-                    this.classList.add('invalid');
+
+                    that.changeInvalidState(isValid, elem);
+                    
                     parent.appendChild(errorMsg);
-                    document.getElementById('submit').setAttribute('disabled', true);
                 };
             }else{
                 if (validated) {
                     validated = false;
-                    this.classList.remove('invalid');
+
+                    that.changeInvalidState(isValid, elem);
+
                     parent.removeChild(errorMsg);
-                    if(document.getElementsByClassName('invalid').length < 1){
-                        document.getElementById('submit').setAttribute('disabled', false);
-                    }
                 };
             }
         })
@@ -112,11 +111,12 @@ module.exports = {
             var targetElem = document.getElementById(targetID);
             var targetValue = targetElem.value;
             var parentElem = that.getClosest(elem, '.bform-subfield__holder');
+            var isValid = inputValue.toLowerCase() === targetValue.toLowerCase();
 
             if (targetValue) {
-                if(inputValue.toLowerCase() === targetValue.toLowerCase()){
+                if(isValid){
                     // If input matches target input, remove all invalid states
-                    that.changeInvalidState(true, elem);
+                    that.changeInvalidState(isValid, elem);
 
                     targetElem.classList.remove('invalid');
 
@@ -125,7 +125,7 @@ module.exports = {
                     };
                 
                 }else{
-                    that.changeInvalidState(false, elem);
+                    that.changeInvalidState(isValid, elem);
 
                     targetElem.classList.add('invalid');
                     if (parentElem.getElementsByClassName('repeat-error').length < 1) {
